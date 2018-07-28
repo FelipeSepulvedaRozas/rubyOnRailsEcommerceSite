@@ -1,0 +1,7 @@
+<%= form_tag("/search", :method => "post") do %>
+<div class="ui icon input">
+    <%= text_field_tag(:search_term) %>
+    <i class="search link icon"></i>
+</div>
+<%= submit_tag("Buscar", :class => "blue ui button") %>
+<% end %>

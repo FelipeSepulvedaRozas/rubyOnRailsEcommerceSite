@@ -1,0 +1,27 @@
+<div class="ui grid stackable">
+    
+    <div class="row">
+        <h3 class="ui header">Productos recientes</h3>
+    </div>
+    
+    <div class="row">
+        <div class="ui three cards grid stackable">
+        <% @items.limit(4).each do |item| %>
+                <div class="card">
+                    <div class="ui image small">
+                        <%= link_to(image_tag item.image_url) %>
+                    </div>
+                    <div class="extra">
+                        <div><h4 class="ui header"><%= link_to item.name, item %></h4></div>
+                        <div><%= item.description %></div>
+                        <div><%= number_to_currency(item.price, :unit => '$') %></div>
+                        <% if user_signed_in? %>
+                            <div><a href="/cart/<%= item.id %>" class="ui button blue">Agregar al Carro</a></div>
+                        <% end %>
+                    </div>
+                </div>
+            <% end %>
+        </div>
+    </div>
+    
+</div>

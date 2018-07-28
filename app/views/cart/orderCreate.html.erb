@@ -1,0 +1,109 @@
+<% total = 0 %>
+
+
+
+<div class="ui grid stackable">
+    
+    <div class="row">
+        <h2 class="ui header">Pago</h2>
+        <br />
+        <div class="ui sub header">Ya tenemos su orden.Despacharemos el pedido a penas confirme el pago</div>
+    </div>
+    
+    <div class="row">
+        <table class="ui celled padded table">
+          <thead>
+            <tr>
+                <th class="ui header h4">ID de Orden</th>
+            </tr>
+          </thead>
+          <tbody>
+              <td class="right aligned">
+                  <%= @orders.id %>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+    </div>
+    
+    <div class="row">
+    <table class="ui celled padded table">
+      <thead>
+        <tr><th class="single line">Nombre</th>
+        <th>Descripcion</th>
+        <th>Precio</th>
+        <th>Imagen</th>
+        <th>Cantidad</th>
+        <th></th>
+      </tr></thead>
+      <tbody>
+          
+        <% @orderitems.each do |item| %>
+    
+        <%
+            id = item.item_id
+            quantity = item.quantity
+            item = Item.find_by_id(id)
+        %>
+        
+            <tr>
+              <td>
+                <h2 class="ui center aligned header"><%= item.name %></h2>
+              </td>
+              <td class="single line">
+                  <%= item.description %>
+              </td>
+              <td>
+                <%= number_to_currency(quantity * item.price, :unit => "$") %>
+              </td>
+              <td class="right aligned">
+                <a href="/items/<%= item.id %>">
+                  <%= image_tag item.image_url, :class => "ui tiny image" %>
+                </a>
+              </td>
+              <td>
+                  <%= quantity %>
+              </td>
+              <td>
+                  <div>
+                      <a href="/cart/remove/<%= item.id %>" class="ui button red">Remover</a>
+                  </div>
+              </td
+            </tr>
+            
+            <!-- add the price to the total -->
+            <% total += quantity * item.price%>
+            
+        <% end %>
+        
+      </tbody>
+    </table>
+  </div>
+  
+  <div class="row">
+      <div>
+          <div class="ui message info">
+              Total: <%= number_to_currency(total, :unit => "Peso ")%>
+          </div>
+      </div>
+  </div>
+  
+  <div class="row">
+      <div>
+          <div class="ui button red">
+              <%= link_to 'Quitar del carro', :controller => "cart", :action => "clear" %>
+          </div>
+      </div>
+      <div>
+          <div class="ui button green">
+              <%= link_to 'Pagar', :controller => "pages", :action => "paymentAccepted" %> 
+          </div>
+      </div>
+      </div>
+      <div>
+          <div class ="ui button blue">
+              <%= link_to "Continuar Comprando", :controller => :items %>
+          </div>
+      </div>
+  </div>
+</div>

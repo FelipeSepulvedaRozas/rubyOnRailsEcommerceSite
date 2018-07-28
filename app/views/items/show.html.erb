@@ -1,0 +1,47 @@
+<div class="ui grid stackable" style="margin-top: 100px">
+  
+  <% if notice %>
+      <div class="row">
+        <div class="ui message info" id="notice"><%= notice %></div>
+      </div>
+  <% end %>
+  
+  <div class ="row">
+    <div><%= link_to 'Editar', edit_item_path(@item), :class => "ui button blue" %></div>
+    <div><%= link_to 'volver', items_path, :class => "ui button grey" %></div>
+  </div>
+  
+  <div class="row">
+    <table class="ui celled padded table">
+      <thead>
+        <tr><th class="single line">Nombre</th>
+        <th>Descricion</th>
+        <th>Precio</th>
+        <th>Imagen</th>
+        <th></th>
+      </tr></thead>
+      <tbody>
+        <tr>
+          <td>
+            <h2 class="ui center aligned header"><%= @item.name %></h2>
+          </td>
+          <td class="single line">
+              <%= @item.description %>
+          </td>
+          <td>
+            <%= @item.price %>
+          </td>
+          <td class="right aligned">
+            <a href="/items/<%= @item.id %>">
+              <%= image_tag @item.image_url, :class => "ui tiny image" %>
+            </a>
+          </td>
+           <td>
+             <div><a href="/cart/<%= @item.id %>" class="ui button blue">Agregar al Carro</a></div>
+           </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  
+</div>

@@ -1,0 +1,68 @@
+<div class="ui grid centered stackable">
+
+  <% if @items.length == 0 %>
+    <div class="row">
+      <div class="ui message info">
+        Esta Categoria no tiene productos
+      </div>
+    </div>
+  <% end %>
+
+  <% @items.each do |item| %>
+    <div class="row">
+    <table class="ui celled padded table">
+      <thead>
+        <tr><th class="single line">Nombre</th>
+        <th>Descripcion</th>
+        <th>Precio</th>
+        <th>imagen</th>
+        
+        <% if current_user.id == 3 %>
+            <th></th>
+            <th></th>
+        <% end %>
+            
+        <% if user_signed_in? %>
+          <th></th>
+        <% end %>
+          
+      </tr></thead>
+      <tbody>
+        <tr>
+          <td>
+            <h2 class="ui center aligned header"><%= item.name %></h2>
+          </td>
+          <td class="single line">
+              <%= item.description %>
+          </td>
+          <td>
+            <%= item.price %>
+          </td>
+          <td class="right aligned">
+            <a href="/items/<%= item.id %>">
+              <%= image_tag item.image_url, :class => "ui tiny image" %>
+            </a>
+          </td>
+          
+          <% if user_signed_in? && current_user.id == 3 %>
+            <td>
+              <%= link_to 'Editar', edit_item_path(item), :class => "ui button grey" %>
+            </td>
+            <td>
+              <%= link_to 'Quitar', item, method: :delete, data: { confirm: 'Are you sure?' }, :class => "ui button red" %>
+            </td>
+          <% end %>
+          
+          <% if user_signed_in? %>
+            <td>
+              <a href="/cart/<%= item.id %>" class="ui button blue">Agregar al Carro</a>
+            </td>
+          <% end %>
+    
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <% end %>
+  
+</div>

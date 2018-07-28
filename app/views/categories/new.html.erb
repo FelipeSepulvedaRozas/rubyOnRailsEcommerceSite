@@ -1,0 +1,17 @@
+<div class="ui grid stackable">
+   
+   <div class="row">
+       <h1>Nueva Categoria</h1>
+   </div>
+   
+   <div class="row">
+       <%= render 'form', category: @category %>
+   </div>
+    
+    <div class="row">
+        <div>
+            <%= link_to 'Volver', categories_path, :class => "ui button grey" %>
+        </div>
+    </div>
+    
+</div>

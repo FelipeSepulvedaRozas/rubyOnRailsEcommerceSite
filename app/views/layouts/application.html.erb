@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= yield(:title) %> | MotherBoard Store</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body style="margin: 0;">
+     <%= render 'common/header'%>
+  
+    <div class="ui centered grid stackable" style="min-height: 1000px;">
+  
+      <div class="row">
+          <% if user_signed_in? %>
+          
+            <div style="margin-right: 10px; padding-top: 10px;">Perfil: <%= current_user.email %></div>
+            <div><%= link_to 'Editar Profile', edit_user_registration_path, :class => "ui button blue" %></div>
+  
+          <% end %>
+        </div>
+        
+      <% if flash[:notice] %>
+        <div class="row">
+          <div>
+            <div class='ui message'>
+              <div class="header">
+                <%= flash[:notice] %>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+      
+      <div class="container">
+        <%= yield %>
+      </div>
+    
+    </div>
+    <%=render 'common/footer'%> 
+    
+  </body>
+</html>

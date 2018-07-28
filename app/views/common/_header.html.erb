@@ -1,0 +1,38 @@
+<%
+  cart = []
+  
+  if session[:cart]
+    cart = session[:cart]
+  end
+  
+  cart_count = cart.length
+%>
+
+<div class="ui blue inverted menu stackable">
+  <%= link_to "Inicio", root_path, :class => "item" %>
+  <%= link_to "Productos", items_path, :class => "item" %>
+  <%= link_to "Categorias",   categories_path, :class => "item" %>
+  <% if user_signed_in? %>
+    <%= link_to "Carro (#{cart_count})",  cart_path, :class => "item" %>
+  <% end %>
+  
+  <% if user_signed_in? && current_user.id == 3 %>
+    <%= link_to "Ordenes",  orders_path, :class => "item" %>
+  <% end %>
+  
+   <div class="right menu">
+     
+    <div class="item">
+      <%=render 'common/search' %>
+    </div>
+  
+    <% if !user_signed_in? %>
+      <%= link_to "Sign up", new_user_registration_path, :class => "item" %>
+      <%= link_to "Log in", new_user_session_path, :class => "item" %>
+    <% end %>
+    
+    <% if user_signed_in? %>
+      <%= link_to 'Log Out', destroy_user_session_path, :method => :delete, :class => "item" %>)
+    <% end %>
+  </div>
+</div>

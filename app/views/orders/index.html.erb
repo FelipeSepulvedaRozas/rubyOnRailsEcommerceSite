@@ -1,0 +1,59 @@
+<div class="ui grid stackable">
+  
+  <% if notice %>
+    <div class="row">
+      <div>
+        <div id="notice" class="ui message info">
+          <%= notice %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+  
+  <div class="row">
+    <h3 class="ui header">Orden</h3>
+  </div>
+  
+  <div class="row">
+      <div>
+        <%= link_to 'Nueva Orden', new_order_path, :class => "ui button blue" %>
+      </div>
+    </div>
+  
+  <div class="row">
+    <table class="ui celled padded table">
+      <thead>
+        <tr>
+          <th class="ui header h4">ID Orden</th>
+            <th>ID Usuario</th>
+            <th>Fecha</th>
+            <th>Status</th>
+            <th></th>
+            <th></th>
+          </tr>
+      </thead>
+      <tbody>
+        <% @orders.each do |order| %>
+            <tr>
+              <td>
+                <h4 class="ui center aligned header"><%= order.id %></h4>
+              </td>
+              <td>
+                  <%= order.user_id %>
+              </td>
+              <td class="right aligned">
+                <%= order.order_date %>
+              </td>
+              <td>
+                  <div><%= link_to 'Editar', edit_order_path(order), :class => "ui button grey" %></div>
+                </td>
+                <td>
+                  <td><%= link_to 'Quitar', order, method: :delete, data: { confirm: 'Are you sure?' }, :class => "ui button red" %></td>
+                </td>
+            </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+  
+</div>

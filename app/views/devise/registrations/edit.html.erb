@@ -1,0 +1,83 @@
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+
+  <div class="ui grid container stackable" style="margin-top: 100px;">
+    
+    <div class="row">
+      <h2 class="ui header">Editar <%= resource_name.to_s.humanize %></h2>
+    </div>
+    
+    <div class="row">
+      <% if devise_error_messages! != "" %>
+        <div class="ui message error">
+          <%= devise_error_messages! %>
+        </div>
+      <% end %>
+    </div>
+    
+    <div class="row">
+      <div class="ui labeled input">
+        <div class="ui label">
+          Email
+        </div>
+        <%= f.email_field :email, autofocus: true %>
+      </div>
+    </div>
+    
+    <div class="row">
+      <div class="ui labeled input">
+        <div class="ui label">
+          Email
+        </div>
+        <%= f.email_field :email, autofocus: true %>
+      </div>
+    </div>
+    
+    <div class="row">
+      <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+        <div class="ui message info">Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+      <% end %>
+    </div>
+    
+    <div class="row">
+      <div class="ui labeled input">
+        <div class="ui label">
+          Password (Leave blank if you don't want to change)
+        </div>
+        <%= f.password_field :password, autocomplete: "off" %>
+        <em><%= @minimum_password_length %> characters minimum</em>
+      </div>
+    </div>
+    
+    <div class="row">
+      <div class="ui labeled input">
+        <div class="ui label">
+          Confirmar contraseña
+        </div>
+        <%= f.password_field :password_confirmation, autocomplete: "off" %>
+      </div>
+    </div>
+    
+    <div class="row">
+      <div class="ui labeled input">
+        <div class="ui label">
+          Current password
+        </div>
+        <%= f.password_field :current_password, autocomplete: "off" %>
+      </div>
+    </div>
+    
+     <div class="row">
+       <div>
+         <%= link_to "Back", :back, :class => "ui button grey" %>
+       </div>
+        <div>
+          <%= f.submit "Update", :class => "ui button blue" %>
+        </div>
+     </div>
+     
+     <div class="row">
+       <div><%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, :class => "ui button red" %></p>
+     </div>
+     
+  </div>
+<% end %>

@@ -1,0 +1,52 @@
+<%= form_with(model: order, local: true) do |form| %>
+  <div class="ui grid stackable">
+    
+    <% if order.errors.any? %>
+      <div class="row">
+        <div id="error_explanation">
+          <div class="header"><%= pluralize(orders.errors.count, "error") %> prohibited this orders from being saved:</div>
+    
+          <div>
+            <% order.errors.full_messages.each do |message| %>
+              <div class="ui message error"><%= message %></div>
+            <% end %>
+          </div>
+          
+        </div>
+      </div>
+    <% end %>
+
+  <div class="row">
+      <div class="ui labeled input">
+          <div class="ui label">
+            Status
+          </div>
+          <%= form.text_field :user_id, id: :status, :placeholder => "User ID" %>
+      </div>
+  </div>
+  
+  <div class="row">
+      <div class="ui labeled input">
+          <div class="ui label">
+            Fecha de Order
+          </div>
+          <%= form.text_field :order_date, id: :order_date, :placeholder => "Order Date" %>
+      </div>
+  </div>
+  
+  <div class="row">
+      <div class="ui labeled input">
+          <div class="ui label">
+            Status
+          </div>
+          <%= form.text_field :status, id: :status, :placeholder => "Status" %>
+      </div>
+  </div>
+
+  <div class="row">
+    <div >
+      <%= form.submit "Guardar", :class => "ui button blue" %>
+    </div>
+  </div>
+  </div>
+<% end %>

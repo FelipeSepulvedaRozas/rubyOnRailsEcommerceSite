@@ -1,0 +1,51 @@
+<div class="ui grid stackable" style="margin-top: 100px">
+  
+  <% if notice %>
+      <div class="row">
+        <div>
+          <div class="ui message info" id="notice"><%= notice %></div>
+        </div>
+      </div>
+  <% end %>
+  
+  <div class="row">
+    <table class="ui celled padded table">
+      <thead>
+        <tr><th class="ui header h4">Nombre</th>
+        <th>Descripcion</th>
+        <th>Imagen</th>
+        <th></th>
+        <% if user_signed_in? && current_user.id == 3 %>
+          <th></th>
+          <th></th>
+        <% end %>
+      </tr></thead>
+      <tbody>
+        <tr>
+          <td>
+            <h4 class="ui center aligned header"><%= @category.name %></h4>
+          </td>
+          <td>
+              <%= @category.description %>
+          </td>
+          <td class="right aligned">
+            <a href="/categories/<%= @category.id %>">
+              <%= image_tag @category.image_url, :class => "ui tiny image" %>
+            </a>
+          </td>
+          <td>
+            <div>
+              <%= link_to 'Volver', categories_path, :class => "ui button grey" %>
+            </div>
+          </td>
+          <% if user_signed_in? && current_user.id == 3 %>
+            <td>
+              <div><%= link_to 'Editar', edit_category_path(@category), :class => "ui button blue" %></div>
+            </td>
+          <% end %>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  
+</div>

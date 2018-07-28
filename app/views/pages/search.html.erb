@@ -1,0 +1,56 @@
+<div class="ui five cards grid stackable">
+  
+  <% if notice %>
+    <div class="row">
+      <div id="notice" class="ui messsage infor"><%= notice %></div>
+    </div>
+  <% end %>
+  
+  <div class="row">
+    <h1 class="ui header" style="padding-right:10px;">Productos</h1>
+    <div>
+      <%= link_to 'Create product', new_item_path, :class => "ui button blue" %>
+    </div>
+  </div>
+  
+  
+  <div class="row">
+    <% @items.each do |item| %>
+    
+      <div class="card">
+          <a href="/items/<%= item.id %>" class="ui small image">
+            <%= image_tag item.image_url %>
+          </a>
+          <div class="extra">
+              <div>
+                  <%= item.name %>
+              </div>
+              <div>
+                  <%= item.description %>
+              </div>
+              <div>
+                <%= number_to_currency(item.price, :unit => "$") %>
+              </div>
+              <% if user_signed_in? %>
+                <div>
+                  <a href="/cart/<%= item.id %>" class="ui button blue">
+                    Agregar al carro
+                  </a>
+              </div>
+              <% end %>
+              
+              <% if user_signed_in? && current_user.id == 3 %>
+                <div style="margin-top: 5px;">
+                  <%= link_to 'Editar', edit_item_path(item), :class => "ui button grey" %>
+                </div>
+                <div style="margin-top: 5px;">
+                  <%= link_to 'Quitar', item, method: :delete, data: { confirm: 'Are you sure?' }, :class => "ui button red" %>
+                </div>
+              <% end %>
+          </div>
+      </div>
+      
+    <% end %>
+  </div>
+  
+</div>

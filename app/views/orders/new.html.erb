@@ -1,0 +1,17 @@
+<div class="ui grid stackable">
+   
+   <div class="row">
+       <h1>New Order</h1>
+   </div>
+   
+   <div class="row">
+       <%= render 'form', order: @order %>
+   </div>
+    
+    <div class="row">
+        <div>
+            <%= link_to 'Volver', orders_path, :class => "ui button grey" %>
+        </div>
+    </div>
+    
+</div>

@@ -1,0 +1,47 @@
+<div class="ui grid stackable" style="margin-top: 100px">
+  
+  <% if notice %>
+      <div class="row">
+        <div>
+          <div class="ui message info" id="notice"><%= notice %></div>
+        </div>
+      </div>
+  <% end %>
+  
+  <div class="row">
+    <table class="ui celled padded table">
+      <thead>
+        <tr>
+          <th class="ui header h4">ID Orden</th>
+          <th>ID Usuario</th>
+          <th>Fecha Orden</th>
+          <th>Status</th>
+          <th></th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <h4 class="ui center aligned header"><%= @order.id %></h4>
+          </td>
+          <td>
+              <%= @order.user_id %>
+          </td>
+          <td class="right aligned">
+            <%= @order.date_ordered %>
+          </td>
+          <td>
+            <div>
+              <%= link_to 'Volver', order_path, :class => "ui button grey" %>
+            </div>
+          </td>
+          <td>
+            <div><%= link_to 'Editar', edit_order_path(@order), :class => "ui button blue" %></div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  
+</div>
