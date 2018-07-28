@@ -50,10 +50,10 @@
               </td>
               <% if user_signed_in? && current_user.id == 3 %>
                 <td>
-                  <div><%= link_to 'Edit', edit_category_path(category), :class => "ui button grey" %></div>
+                  <div><%= link_to 'Editar', edit_category_path(category), :class => "ui button grey" %></div>
                 </td>
                 <td>
-                  <td><%= link_to 'Destroy', category, method: :delete, data: { confirm: 'Are you sure?' }, :class => "ui button red" %></td>
+                  <td><%= link_to 'Eliminar', category, method: :delete, data: { confirm: 'Are you sure?' }, :class => "ui button red" %></td>
                 </td>
               <% end %>
             </tr>
